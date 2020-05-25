@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}ToBeTogether{% endblock %}
+
+{% block content %}
+
+  <h1>ToBeTogether</h1>
+  <p></p>
+    <p>TBT is a social project.</p>
+    <p>Today, many people would like to get help or advice, but they can’t do it because of different situations.</p>
+    <p>TBT will allow you to anonymously post a topic of your problem and a brief description. It will be called an ISSUE.</p>
+    <p>Also only one person can join to your issue anonymously.</p>
+    <p>You can talk about anything without fear of publicity or public censure.</p>
+    <p>If you do not like the person you are talking to, we recommend that you recreate the issue.</p>
+    <p>After closing the issue, all data about it will be deleted once and for all.</p>
+    <p></p>
+  <p><a href="{% url 'register' %}">Create an account</a>
+     or 
+     <a href="{% url 'login' %}">Log-in</a></p>
+
+{% endblock %}

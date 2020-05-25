@@ -11,21 +11,22 @@
   <div id="header">
     <span class="logo">
       <img src="{% static '/img/logo_tbt.png' %}" width="50" height="50">
-      ToBeTogether
+      
+        <a href="{% url "ToBeTogether" %}">ToBeTogether</a>
     </span>
     {% if request.user.is_authenticated %}
       <ul class="menu">
         <li {% if section == "My issues" %}class="selected"{% endif %}>
-          <a href="">My issues</a>
+          <a href="{% url "my_issues" %}">My issues</a>
         </li>
         <li {% if section == "New issues" %}class="selected"{% endif %}>
-          <a href="">New issues</a>
+          <a href="{% url "new_issues" %}">New issues</a>
         </li>
         <li {% if section == "My profile" %}class="selected"{% endif %}>
-          <a href="">My profile</a>
+          <a href="{% url "my_profile" %}">My profile</a>
         </li>
-        <li {% if section == "dashboard" %}class="selected"{% endif %}>
-          <a href="{% url "dashboard" %}">Settings</a>
+        <li {% if section == "settings" %}class="selected"{% endif %}>
+          <a href="{% url "settings" %}">Settings</a>
         </li>
       </ul>
     {% endif %}

@@ -30,11 +30,45 @@ def user_login(request):
     return render(request, 'account/login.html', {'form': form})
 
 
-@login_required
-def dashboard(request):
+def start(request):
     return render(request,
-                  'account/dashboard.html',
-                  {'section': 'dashboard'})
+                  'account/start.html',
+                  {'section': 'start'})
+
+
+def ToBeTogether(request):
+    return render(request,
+                  'account/ToBeTogether.html',
+                  {'section': 'ToBeTogether'})
+
+
+@login_required
+def my_profile(request):
+    return render(request,
+                  'account/my_profile.html',
+                  {'section': 'my_profile'})
+
+
+@login_required
+def my_issues(request):
+    return render(request,
+                  'account/my_issues.html',
+                  {'section': 'my_issues'})
+
+
+@login_required
+def new_issues(request):
+    return render(request,
+                  'account/new_issues.html',
+                  {'section': 'my_issues'})
+
+
+@login_required
+def settings(request):
+    return render(request,
+                  'account/settings.html',
+                  {'section': 'settings'})
+
 
 
 def register(request):
