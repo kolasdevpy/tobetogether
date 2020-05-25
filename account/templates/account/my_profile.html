@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}My account{% endblock %}
+
+{% block content %}
+  <h1>My account</h1>
+  <p><a href="{% url "my_issues" %}">My issues</a></p>
+  <p><a href="{% url "new_issues" %}">New issues</a></p>
+{% endblock %}

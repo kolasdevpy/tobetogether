@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}issue.issue_title{% endblock %}
+
+{% block content %}
+
+<h2>{{issue.issue_title}}</h2>
+<p>{{}issue.issue_description}</p>
+<em>{{issue.pub_date}}</em>
+
+<hr>
+
+{% if latest_comments %}
+    {% for com in latest_comments %}
+        <p>
+            <strong>{{ com.author_name }}</strong>
+            <p>{{com.comment_text}}</p>
+        </p>
+    {% endfor %}
+
+{% else %}
+Write your first comment, please.
+{% endif %}
+
+
+<hr>
+
+<form action="{% url 'issue:leave_comment' issue.id %}" method="POST">
+
+    {% csrf_token %}
+
+    <input type="text" required placeholder="Name" name="name"><br>
+    <textarea name="text" required="" placeholder="Comment text" cols="100" rows="10"></textarea><br>
+загрузка файла
+
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}

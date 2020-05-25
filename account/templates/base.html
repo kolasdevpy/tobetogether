@@ -2,29 +2,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{% block title %}{% endblock %}</title>
-  <link href="{% static "css/styles.css" %}" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>{% block title %}ToBeTogether{% endblock %}</title>
+  <link href="{% static 'img/logo_tbt.png' %}" rel="icon">
+  <link href="{% static 'account/css/base.css' %}" rel="stylesheet">
 </head>
 <body>
   <div id="header">
-    <span class="logo">To Be Together</span>
+    <span class="logo">
+      <img src="{% static '/img/logo_tbt.png' %}" width="50" height="50">
+      ToBeTogether
+    </span>
     {% if request.user.is_authenticated %}
       <ul class="menu">
+        <li {% if section == "My issues" %}class="selected"{% endif %}>
+          <a href="">My issues</a>
+        </li>
+        <li {% if section == "New issues" %}class="selected"{% endif %}>
+          <a href="">New issues</a>
+        </li>
+        <li {% if section == "My profile" %}class="selected"{% endif %}>
+          <a href="">My profile</a>
+        </li>
         <li {% if section == "dashboard" %}class="selected"{% endif %}>
-          <a href="{% url "dashboard" %}">My dashboard</a>
-        </li>
-        <li {% if section == "images" %}class="selected"{% endif %}>
-          <a href="#">Images</a>
-        </li>
-        <li {% if section == "people" %}class="selected"{% endif %}>
-          <a href="#">People</a>
+          <a href="{% url "dashboard" %}">Settings</a>
         </li>
       </ul>
     {% endif %}
 
     <span class="user">
       {% if request.user.is_authenticated %}
-        Hello {{ request.user.first_name }},
         <a href="{% url "logout" %}">Logout</a>
       {% else %}
         <a href="{% url "login" %}">Log-in</a>
@@ -43,6 +50,9 @@
   {% endif %}
   <div id="content">
     {% block content %}
+    <div></div>
+    <img src="{% static '/img/logo_tbt.png' %}">
+    </div>
     {% endblock %}
   </div>
 </body>
