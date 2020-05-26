@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}My profile{% endblock %}
+{% block title %}TBT - My profile{% endblock %}
 
 {% block content %}
   <h1>My profile</h1>
+  <p><a href="{% url 'new_issues' %}">Create an issue</a></p>
   <p><a href="{% url 'my_issues' %}">List my issues</a></p>
   <p><a href="{% url 'new_issues' %}">List new issues</a></p>
+
 {% endblock %}

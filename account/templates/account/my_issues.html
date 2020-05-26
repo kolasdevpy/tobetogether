@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}My issues{% endblock %}
+{% block title %}TBT - My issues{% endblock %}
 
 {% block content %}
   <h1>My issues</h1>
-  
-  <p><a href="{% url 'my_issues' %}">My issues</a></p>
+
+  <p><a href="{% url 'new_issues' %}">Create an issue</a></p>
+  <p><a href="{% url 'my_issues' %}">List my issues</a></p>
+
 
 {% endblock %}
