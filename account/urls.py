@@ -11,7 +11,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('my_profile/', views.my_profile, name='my_profile'),
-    path('mu_issues/', views.my_issues, name='my_issues'),
+    path('my_issues/', views.my_issues, name='my_issues'),
     path('new_issues/', views.new_issues, name='new_issues'),
     path('settings/', views.settings, name='settings'),
     # change password urls

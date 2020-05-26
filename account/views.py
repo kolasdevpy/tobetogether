@@ -60,7 +60,7 @@ def my_issues(request):
 def new_issues(request):
     return render(request,
                   'account/new_issues.html',
-                  {'section': 'my_issues'})
+                  {'section': 'new_issues'})
 
 
 @login_required
