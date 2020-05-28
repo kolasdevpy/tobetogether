@@ -1,7 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Issue, Comment
+from .forms import IssueForm, CommentForm
+
+
+
 
 
 def index(request):
@@ -31,6 +36,20 @@ def leave_comment(request, issue_id):
     a.comment_set.create(author_name = request.POST['name'], comment_text = request.POST['text'])
 
     return HttpResponseRedirect(reverse('issue:detail', args = (a.id)))
+
+
+@login_required
+def create_issue(request):
+    if request.method == 'GET':
+        form = IssueForm()
+    elif request.method == 'POST':
+        form = IssueForm(request.POST)
+        if form.is_valid():
+            issue = form.save()
+            issue.save()
+            return redirect('/')
+    return render(request, 'create_issue.html', context={'form': form})
+
 
 
 # Issue.object.filter(issue_title__startswith = "qwerty")

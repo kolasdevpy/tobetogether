@@ -1,11 +1,12 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 
 
 
 class Issue(models.Model):
-    #issue = models.ForeignKey(Issue, on_delete = models.CASCADE)
+    issue = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     issue_title = models.CharField('Issue', max_length=100)
     issue_description = models.TextField('Description')
     pub_date = models.DateTimeField('Data')
@@ -27,8 +28,8 @@ class Comment(models.Model):
     issue = models.ForeignKey(Issue, on_delete = models.CASCADE)
     author_name = models.CharField('author name', max_length=50)
     comment_text = models.TextField('comment')
-    # img
-    # file
+    image = models.ImageField(upload_to='img')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.author_name

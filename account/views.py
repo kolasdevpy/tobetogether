@@ -7,6 +7,8 @@ from .forms import LoginForm, UserRegistrationForm, \
                    UserEditForm, ProfileEditForm
 from .models import Profile
 
+from issue.models import Issue, Comment
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -68,6 +70,19 @@ def settings(request):
     return render(request,
                   'account/settings.html',
                   {'section': 'settings'})
+
+
+# @login_required
+# def create_issue(request):
+#     if request.method == 'GET':
+#         form = IssueForm()
+#     elif request.method == 'POST':
+#         form = IssueForm(request.POST)
+#         if form.is_valid():
+#             issue = form.save()
+#             issue.save()
+#             return redirect('/')
+#     return render(request, 'create_issue.html', context={'form': form})
 
 
 
