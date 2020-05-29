@@ -1,54 +1,56 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Issue, Comment
 from .forms import IssueForm, CommentForm
-
+from django.conf import settings
 
 
 
 
 def index(request):
-    # print(Issue.__text_signature__)
-    latest_issues_list = Issue.object.order_by('-pub_date')[:5]
-    # latest_issues_list = Issue()
-    # Entry.objects.order_by('blog__name', 'headline')
-
+    latest_issues_list = Issue.objects.filter(issue_private=False).order_by('-pub_date')[:]
     return render(request, 'issue/list_issues.html', {'latest_issues_list': latest_issues_list})
 
-def detail(request, issue_id):
+
+def detail(request, id):
     try:
-        a = Issue.object.get(id=issue_id)
+        a = Issue.objects.get(pk=id)
     except:
         raise Http404('Issue not found.')
-
     latest_comments = a.comment_set.order_by('-id')[:]
+    return render(request, 'issue/detail.html', {'issue': a, 'form': CommentForm(), 'latest_comments': latest_comments})
 
-    return render(recuest, 'issue/detail.html', {'issue': a})
 
-def leave_comment(request, issue_id):
+def leave_comment(request, id):
     try:
-        a = Issue.object.get(id=issue_id)
+        a = Issue.objects.get(pk=id)
     except:
         raise Http404('Issue not found.')
-
-    a.comment_set.create(author_name = request.POST['name'], comment_text = request.POST['text'])
-
-    return HttpResponseRedirect(reverse('issue:detail', args = (a.id)))
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment_text = form.cleaned_data['comment_text']
+    a.comment_set.create(author_name = request.user.username , comment_text = comment_text)
+    a.issue_private = True
+    a.save()
+    return HttpResponseRedirect(reverse('detail', args=[a.id]))
 
 
 @login_required
 def create_issue(request):
     if request.method == 'GET':
         form = IssueForm()
+        return render(request, 'create_issue.html', context={'form': form})
     elif request.method == 'POST':
         form = IssueForm(request.POST)
         if form.is_valid():
-            issue = form.save()
-            issue.save()
-            return redirect('/')
-    return render(request, 'create_issue.html', context={'form': form})
+            issue = Issue()
+            issue.create_issue_model(form.data['issue_title'],
+                                    form.data['issue_description'],
+                                    request.user)
+            return redirect('/my_issues/')
+        return render(request, 'create_issue.html', context={'form': form}) 
 
 
 

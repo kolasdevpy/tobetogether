@@ -37,7 +37,7 @@
       {% endif %}
     </span>
   </div>
-  {% if messages %}
+  <!-- {% if messages %}
     <ul class="messages">
       {% for message in messages %}
         <li class="{{ message.tags }}">
@@ -46,12 +46,12 @@
         </li>
       {% endfor %}
     </ul>
-  {% endif %}
+  {% endif %} -->
   <div id="content">
     {% block content %}
-    <div></div>
+    <!-- <div>
     <img src="{% static '/img/logo_tbt.png' %}">
-    </div>
+    </div> -->
     {% endblock %}
   </div>
 </body>

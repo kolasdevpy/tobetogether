@@ -5,11 +5,13 @@ from django.conf import settings
 
 
 
+
 class Issue(models.Model):
     issue = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     issue_title = models.CharField('Issue', max_length=100)
     issue_description = models.TextField('Description')
-    pub_date = models.DateTimeField('Data')
+    pub_date = models.DateTimeField(default=timezone.now)
+    issue_private = models.BooleanField(default=False)
 
     def __str__(self):
         return self.issue_title
@@ -21,14 +23,19 @@ class Issue(models.Model):
         verbose_name = 'Issue'
         verbose_name_plural = 'Issues'
 
-    # only ONE commentator and author
+    def create_issue_model(self, a,b,c):
+        self.issue_title = a
+        self.issue_description = b
+        self.issue = c
+        self.save()
+        return
 
 
 class Comment(models.Model):
     issue = models.ForeignKey(Issue, on_delete = models.CASCADE)
     author_name = models.CharField('author name', max_length=50)
     comment_text = models.TextField('comment')
-    image = models.ImageField(upload_to='img')
+    image = models.ImageField(upload_to='img', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -37,6 +44,4 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
-
-
 

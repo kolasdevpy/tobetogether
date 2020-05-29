@@ -4,10 +4,9 @@
 
 {% block content %}
   <h1>Create new issue</h1>
-  <form action="." method="post" enctype="multipart/form-data">
-    <!-- {{ user_form.as_p }} -->
-    {{ issue_form.as_p }}
+  <form action="" method="post">
     {% csrf_token %}
+    {{ form }}
     <p><input type="submit" value="Create issue"></p>
   </form>
 {% endblock %}

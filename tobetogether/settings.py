@@ -14,13 +14,13 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account.apps.AccountConfig',
     'issue.apps.IssueConfig',
     
 ]

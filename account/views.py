@@ -6,8 +6,8 @@ from django.contrib import messages
 from .forms import LoginForm, UserRegistrationForm, \
                    UserEditForm, ProfileEditForm
 from .models import Profile
-
 from issue.models import Issue, Comment
+from django.db.models import Q
 
 
 def user_login(request):
@@ -53,9 +53,9 @@ def my_profile(request):
 
 @login_required
 def my_issues(request):
-    return render(request,
-                  'account/my_issues.html',
-                  {'section': 'my_issues'})
+    comments = Comment.objects.filter(author_name=request.user.username).distinct('issue')
+    latest_issues_list = Issue.objects.filter(Q(issue=request.user) | Q(pk__in=[i.issue.pk for i in comments])).order_by('-pub_date')[:]
+    return render(request, 'issue/list_issues.html', {'latest_issues_list': latest_issues_list})
 
 
 @login_required
@@ -72,32 +72,14 @@ def settings(request):
                   {'section': 'settings'})
 
 
-# @login_required
-# def create_issue(request):
-#     if request.method == 'GET':
-#         form = IssueForm()
-#     elif request.method == 'POST':
-#         form = IssueForm(request.POST)
-#         if form.is_valid():
-#             issue = form.save()
-#             issue.save()
-#             return redirect('/')
-#     return render(request, 'create_issue.html', context={'form': form})
-
-
-
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
-            # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
-            # Set the chosen password
             new_user.set_password(
                 user_form.cleaned_data['password'])
-            # Save the User object
             new_user.save()
-            # Create the user profile
             Profile.objects.create(user=new_user)
             return render(request,
                           'account/register_done.html',
