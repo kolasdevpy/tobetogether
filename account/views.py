@@ -55,7 +55,7 @@ def my_profile(request):
 def my_issues(request):
     comments = Comment.objects.filter(author_name=request.user.username).distinct('issue')
     latest_issues_list = Issue.objects.filter(Q(issue=request.user) | Q(pk__in=[i.issue.pk for i in comments])).order_by('-pub_date')[:]
-    return render(request, 'issue/list_issues.html', {'latest_issues_list': latest_issues_list})
+    return render(request, 'account/my_issues.html', {'latest_issues_list': latest_issues_list})
 
 
 @login_required

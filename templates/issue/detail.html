@@ -8,14 +8,32 @@
 <p>{{issue.issue_description}}</p>
 <em>{{issue.pub_date}}</em>
 
+
+<hr>
+
+<form action="{% url 'leave_comment' issue.id %}" method="POST", enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="file" name="image">
+    <input type="submit" value="Save"  name="_save">
+
+</form>
+
+
 <hr>
 
 {% if latest_comments %}
     {% for com in latest_comments %}
         <p>
-            <strong>{{ com.author_name }}</strong>
+            <strong>{{ com.author_name }} - {{ com.created_at }}</strong>
             <p>{{com.comment_text}}</p>
         </p>
+        {% if com.image %}
+            <div>
+                <img id="image_comment" src = "{{ com.image.url }}" width=400px; height=auto;>
+            </div>
+        {% endif %}
     {% endfor %}
 
 {% else %}
@@ -23,14 +41,5 @@ Write your first comment, please.
 {% endif %}
 
 
-<hr>
-
-<form action="{% url 'leave_comment' issue.id %}" method="POST">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Submit</button>
-</form>
 
 {% endblock %}

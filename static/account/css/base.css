@@ -8,21 +8,17 @@ body {
     font-family:Arial, sans-serif;
     color:#979797;
     font-size:20px;
-    
-
 }
 
 a {
     color:#6690df;
     text-decoration:none;
-
 }
 
 a:hover {
     font-weight: bold;
     transition-property: all;
     transition-duration: .4s;
-
 }
 
 h1, h2, h3, h4, h5 , h6 {
@@ -33,7 +29,6 @@ h1, h2, h3, h4, h5 , h6 {
     align-items: center;
     justify-content: space-around;
     color:#6690df;
-
 }
 
 h2 {
@@ -73,17 +68,13 @@ h2 {
     margin:0;
     padding:0;
 }
+
 #header ul.menu li {
     float:left;
     padding:4px 10px;
 }
 
-#header ul.menu li.selected a, #header ul.menu li.selected a:hover {
-    color:#fdc7f9;
-    font-weight:bold;
-    transition-property: all;
-    transition-duration: .4s;
-}
+
 
 #header a {
     color:#ffffff;
@@ -91,7 +82,14 @@ h2 {
 
 #header a:hover {
     color:#fdc7f9;
-    font-weight: normal;
+    font-weight: bold;
+    transition-property: all;
+    transition-duration: .4s;
+}
+
+#header ul.menu li.selected a, #header ul.menu.li.selected a:hover {
+    color:#fdc7f9;
+    font-weight:bold;
     transition-property: all;
     transition-duration: .4s;
 }
@@ -102,6 +100,7 @@ h2 {
 
 #content {
     padding:30px 100px;
+    margin:10px 10px 20px 10px;
 }
 
 /* forms */
@@ -117,7 +116,6 @@ form p {
 label {
     float:left;
     clear:both;
-    
     margin-bottom:4px;
     color:#5f5f5f;
 
@@ -126,7 +124,7 @@ input, textarea {
     clear:both;
     float:left;
     margin:0 0 10px;
-    background:#d0e1ff;
+    background:#e3dfff;
     border:0;
     padding:6px 10px;
     font-size:14px;
@@ -151,5 +149,40 @@ input[type=submit], a.button {
     color:#aaa;
     clear:both;
     float:left;
-    font-size:13px;
+    font-size:10px;
+}
+
+#image_comment {
+    width: 200px;
+    height: auto;
+}
+
+.login-form {
+    float:left;
+}
+
+.social {
+    float: right;
+}
+
+.social li {
+    list-style:none;
+    padding:10px 20px;
+    margin:0 0 10px 0;
+}
+
+.social li a {
+    width:100%;
+    height:100%;
+    display:block;
+    color:#fff;
+
+}
+.social li.facebook { background:#3b5399; }
+.social li.twitter { background:#00cffa; }
+
+
+.list_issues div {
+    padding:10px 20px;
+    margin:0 0 10px 0;
 }

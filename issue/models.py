@@ -35,7 +35,7 @@ class Comment(models.Model):
     issue = models.ForeignKey(Issue, on_delete = models.CASCADE)
     author_name = models.CharField('author name', max_length=50)
     comment_text = models.TextField('comment')
-    image = models.ImageField(upload_to='img', null=True, blank=True)
+    image = models.ImageField(upload_to='media/img', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

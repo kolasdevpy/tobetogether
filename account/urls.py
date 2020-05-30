@@ -3,6 +3,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 
+
 urlpatterns = [
     # account, login, issue view
     path('', views.start, name='start'),

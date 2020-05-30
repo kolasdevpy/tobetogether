@@ -11,4 +11,4 @@ class IssueForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['comment_text', 'image']
+        fields = ['comment_text']

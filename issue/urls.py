@@ -3,7 +3,7 @@ from issue import views
 from account.urls import urlpatterns
 
 
-
+# app_name = "issue"
 
 urlpatterns = [
     path('', views.index, name = 'index'),

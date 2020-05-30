@@ -95,15 +95,19 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
+
+
+# MEDIA_URL = '/templates/img/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, '')
+# upload_to='shop/templates/img'
+
 
 REGISTER_REDIRECT_URL = 'my_profile'
 LOGIN_REDIRECT_URL = 'my_profile'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

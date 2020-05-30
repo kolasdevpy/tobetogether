@@ -5,16 +5,19 @@ from django.urls import reverse
 from .models import Issue, Comment
 from .forms import IssueForm, CommentForm
 from django.conf import settings
+import random
+import hashlib
 
 
 
 
 def index(request):
-    latest_issues_list = Issue.objects.filter(issue_private=False).order_by('-pub_date')[:]
-    return render(request, 'issue/list_issues.html', {'latest_issues_list': latest_issues_list})
+    latest_issues_list = Issue.objects.filter(issue_private=False).order_by('pub_date')[:]
+    return render(request, 'account/new_issues.html', {'latest_issues_list': latest_issues_list})
 
 
 def detail(request, id):
+    # if id == author, commentator --------------------------------------------
     try:
         a = Issue.objects.get(pk=id)
     except:
@@ -31,10 +34,12 @@ def leave_comment(request, id):
     form = CommentForm(request.POST)
     if form.is_valid():
         comment_text = form.cleaned_data['comment_text']
-    a.comment_set.create(author_name = request.user.username , comment_text = comment_text)
-    a.issue_private = True
-    a.save()
+        a.comment_set.create(author_name=request.user.username, comment_text=comment_text, image=request.FILES.get('image'))
+        a.issue_private = True
+        # a.id = random.randint(1, 1e60)
+        a.save()
     return HttpResponseRedirect(reverse('detail', args=[a.id]))
+
 
 
 @login_required

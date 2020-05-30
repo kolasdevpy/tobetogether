@@ -6,7 +6,19 @@
   <h1>My issues</h1>
 
   <p><a href="{% url 'create_issue' %}">Create an issue</a></p>
-  <p><a href="{% url 'my_issues' %}">List my issues</a></p>
 
+    {% if latest_issues_list %}
+
+      {% for a in latest_issues_list %}
+        <div class="list_issues">
+            <a href="{% url 'detail' a.id %}">{{a.issue_title}}</a>
+        </div>
+      {% endfor %}
+
+    {% else %}
+
+      Issues not found
+
+    {% endif %}
 
 {% endblock %}
