@@ -22,12 +22,13 @@ a:hover {
     font-weight: bold;
     transition-property: all;
     transition-duration: .4s;
+    color:#576bc5;
 
 }
 
 h1, h2, h3, h4, h5 , h6 {
     font-family: 'Arial', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     font-size:40px;
     display: flex;
     align-items: center;
@@ -48,7 +49,7 @@ h2 {
     background:#6690df;
     color:rgb(255, 255, 255);
     border-bottom:2px solid #d4d6f5;
-    overflow:auto;
+    overflow: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -78,13 +79,6 @@ h2 {
     padding:4px 10px;
 }
 
-#header ul.menu li.selected a, #header ul.menu li.selected a:hover {
-    color:#fdc7f9;
-    font-weight:bold;
-    transition-property: all;
-    transition-duration: .4s;
-}
-
 #header a {
     color:#ffffff;
 }
@@ -96,12 +90,49 @@ h2 {
     transition-duration: .4s;
 }
 
+/* #header ul.menu li.selected a:hover {
+    color:#fdc7f9;
+    font-weight: bold;
+    transition-property: all;
+    transition-duration: .4s;
+} */
+
 #header .user {
     float:right;
 }
 
 #content {
     padding:30px 100px;
+}
+
+#create_issue {
+    font-size:30px;
+    font-weight: normal;
+    padding:0 30px 25px;
+}
+
+#data_time {
+    font-size:10px;
+}
+
+.file_load {
+    background:#ffffff;
+}
+
+.list_issues {
+    padding:5px 150px;
+}
+
+.join_to_issue {
+    padding:0px 30px 0px;
+    font-size:25px;
+    font-weight: normal;
+    color:#6690df;
+}
+
+form.search {
+    width: 100%;
+    padding:1px 150px 1px;
 }
 
 /* forms */
@@ -126,7 +157,7 @@ input, textarea {
     clear:both;
     float:left;
     margin:0 0 10px;
-    background:#d0e1ff;
+    background:#e4f0ff;
     border:0;
     padding:6px 10px;
     font-size:14px;
@@ -134,10 +165,10 @@ input, textarea {
 
 input[type=submit], a.button {
     font-weight:bold;
+    font-size:14px;
     background:#6690df;
     color:#fff;
     padding:10px 20px;
-    font-size:14px;
     text-transform:uppercase;
 }
 .errorlist {
@@ -152,47 +183,6 @@ input[type=submit], a.button {
     clear:both;
     float:left;
     font-size:13px;
-}
-/* messages */
-ul.messages {
-    margin:10px 100px;
-    padding:0;
-    list-style-type:
-    none;
-}
-ul.messages li.success,
-ul.messages li.warning,
-ul.messages li.error,
-ul.messages li.info {
-    margin:0;
-    padding:14px 20px;
-    list-style:none;
-    color:#fff;
-}
-
-ul.messages li.success { background:#6690df; }
-ul.messages li.success a { color:#6690df; }
-
-ul.messages li.error { background:#db5b7b; color:#e9828e; }
-ul.messages li.error a { color:#e9828e; }
-
-ul.messages li.info { background:#faffae; color:#696b4e; }
-ul.messages li.info a { color:#1586de; }
-
-ul.messages li.warning { background:#de9404; }
-ul.messages li.warning a { color:#f49000; }
-
-ul.messages li a.close {
-    margin:0;
-    float:right;
-    opacity:1;
-    border:0;
-    box-shadow:none;
-    text-shadow:none;
-}
-
-.login-form {
-    float:left;
 }
 
 /* social-auth */
@@ -217,86 +207,3 @@ ul.messages li a.close {
 .social li.twitter { background:#00cffa; }
 
 
-/* images */
-
-.image-preview, .image-detail {
-    max-width:300px;
-    float:left;
-    margin:0 20px 20px 0;
-}
-.image-detail { margin-top:20px; }
-.image-info div {
-    padding:20px 0;
-    overflow:auto;
-}
-.count {
-    color:#aaa;
-    border:3px solid #bbb;
-    border-radius:26px;
-    padding:10px 20px;
-    margin:20px 10px 0;
-}
-a.like, a.follow { float:right; margin-top:-8px; }
-
-#image-list { overflow:auto; }
-#image-list .image {
-    float:left;
-    width:220px;
-    height:300px;
-    margin:0 10px 10px 10px;
-    border-top:8px solid #6690df;
-    background:#eee;
-}
-#image-list img { width:220px; height:220px; }
-#image-list .info { padding:10px; }
-#image-list .info a { color:#333; }
-.image-likes div {
-    float:left;
-    width:auto;
-    padding:10px;
-    text-align:center;
-}
-.image-likes img {
-    width:120px;
-    height:120px;
-    border-radius:50%;
-}
-
-/* users */
-#people-list img {
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    margin-bottom:20px;
-}
-#people-list .user {
-    width:180px;
-    float:left;
-    overflow:auto;
-    padding:10px;
-}
-#people-list .info { text-align:center; }
-img.user-detail {
-    border-radius:50%;
-    float:left;
-}
-.profile-info {
-    float:left;
-    overflow:auto;
-    margin-right:20px;
-}
-.image-container { margin-top:40px; }
-
-/* actions */
-.action {
-    clear:both;
-    overflow:auto;
-}
-.action .images {
-    float:left;
-    margin:0 10px 10px 0;
-}
-.action .date {
-    font-style:italic;
-    color:#ccc;
-}

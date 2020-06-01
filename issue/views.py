@@ -6,9 +6,21 @@ from .models import Issue, Comment
 from .forms import IssueForm, CommentForm
 from django.conf import settings
 import random
-import hashlib
+import hashlib  #
+
+from django.db.models import Q
+from django.views.decorators.http import require_GET
 
 
+
+
+@require_GET
+def search(request):
+    query = request.GET.get("q", "")
+    search_issues = Issue.objects.filter(
+        Q(issue_title__icontains=query) & Q(issue_private=False)
+        ).order_by('-pub_date')[:]
+    return render(request, 'search.html', context={'search_issues': search_issues})
 
 
 def index(request):
@@ -36,10 +48,13 @@ def leave_comment(request, id):
         comment_text = form.cleaned_data['comment_text']
         a.comment_set.create(author_name=request.user.username, comment_text=comment_text, image=request.FILES.get('image'))
         a.issue_private = True
-        # a.id = random.randint(1, 1e60)
+        # issue_new_id = Issue.objects.get(pk=id)
+        # print(issue_new_id.pk)
+        # new_id = random.randint(1, 1e6)
+        # print(new_id)
+        # a.pk = new_id
         a.save()
     return HttpResponseRedirect(reverse('detail', args=[a.id]))
-
 
 
 @login_required

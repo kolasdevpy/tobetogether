@@ -5,7 +5,8 @@
 {% block content %}
   <h1>My issues</h1>
 
-  <p><a href="{% url 'create_issue' %}">Create an issue</a></p>
+  <p id="create_issue"><a href="{% url 'create_issue' %}">Create an issue</a></p>
+  <p class="join_to_issue">My issues:</p>
 
     {% if latest_issues_list %}
 

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}issue.issue_title{% endblock %}
+{% block title %}{{issue.issue_title}}{% endblock %}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
 
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="file" name="image">
+    <input class="file_load" type="file" name="image" value="Load image" placeholder="Load image">
     <input type="submit" value="Save"  name="_save">
 
 </form>
@@ -26,7 +26,7 @@
 {% if latest_comments %}
     {% for com in latest_comments %}
         <p>
-            <strong>{{ com.author_name }} - {{ com.created_at }}</strong>
+            <strong>{{ com.author_name }} <div id="data_time">{{ com.created_at }}</div></strong>
             <p>{{com.comment_text}}</p>
         </p>
         {% if com.image %}
@@ -34,6 +34,7 @@
                 <img id="image_comment" src = "{{ com.image.url }}" width=400px; height=auto;>
             </div>
         {% endif %}
+        <hr>
     {% endfor %}
 
 {% else %}

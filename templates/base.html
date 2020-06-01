@@ -9,49 +9,39 @@
 </head>
 <body>
   <div id="header">
-    <span class="logo">
-      <img src="{% static '/img/logo_tbt.png' %}" width="50" height="50">
-      <a href="{% url 'ToBeTogether' %}">ToBeTogether</a>
-    </span>
-    {% if request.user.is_authenticated %}
-      <ul class="menu">
-        <li {% if section == 'my_issues' %}class="selected"{% endif %}>
-          <a href="{% url 'my_issues' %}">My issues</a>
-        </li>
-        <li {% if section == 'new_issues' %}class="selected"{% endif %}>
-          <a href="{% url 'new_issues' %}">New issues</a>
-        </li>
-        <li {% if section == "my_profile" %}class="selected"{% endif %}>
-          <a href="{% url 'my_profile' %}">My profile</a>
-        </li>
-        <li {% if section == 'settings' %}class="selected"{% endif %}>
-          <a href="{% url 'settings' %}">Settings</a>
-        </li>
-      </ul>
-    {% endif %}
-    <span class="user">
+      <span class="logo">
+        <img src="{% static '/img/logo_tbt.png' %}" width="50" height="50">
+        <a href="{% url 'ToBeTogether' %}">ToBeTogether</a>
+      </span>
       {% if request.user.is_authenticated %}
-        <a href="{% url 'logout' %}">Logout</a>
-      {% else %}
-        <a href="{% url 'login' %}">Log-in</a>
+        <ul class="menu">
+          <li {% if section == 'my_issues' %}class="selected"{% endif %}>
+            <a href="{% url 'my_issues' %}">My issues</a>
+          </li>
+          <li {% if section == 'new_issues' %}class="selected"{% endif %}>
+            <a href="{% url 'new_issues' %}">New issues</a>
+          </li>
+          <li {% if section == "my_profile" %}class="selected"{% endif %}>
+            <a href="{% url 'my_profile' %}">My profile</a>
+          </li>
+          <li {% if section == 'settings' %}class="selected"{% endif %}>
+            <a href="{% url 'settings' %}">Settings</a>
+          </li>
+        </ul>
       {% endif %}
-    </span>
+      <span class="user">
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'login' %}">Log-in</a>
+        {% endif %}
+      </span>
   </div>
-  <!-- {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li class="{{ message.tags }}">
-          {{ message|safe }}
-            <a href="#" class="close">x</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %} -->
   <div id="content">
     {% block content %}
-    <!-- <div>
+    <div>
     <img src="{% static '/img/logo_tbt.png' %}">
-    </div> -->
+    </div>
     {% endblock %}
   </div>
 </body>
