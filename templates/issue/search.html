@@ -5,13 +5,11 @@
 {% block content %}
 
   <h1>New issues</h1>
-  
   <p id="create_issue"><a href="{% url 'create_issue' %}">Create an issue</a></p>
   <p class="join_to_issue">Join to issue:</p>
   <form class="search" method="GET" action="/issue/new_issues/search/">
     <input type="search" name="q" placeholder="Search">
   </form>
-
 
   {% if search_issues %}
     {% for a in search_issues %}
@@ -21,10 +19,9 @@
     {% endfor %}
 
   {% else %}
-    Issues not found
+    <div class="issues_not_found">
+      Issues not found
+    </div>
   {% endif %}
-
-
-
 
 {% endblock %}

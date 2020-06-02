@@ -5,9 +5,6 @@ from .import config
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-
 SECRET_KEY = config.SECRET_KEY
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -22,7 +19,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
     'issue.apps.IssueConfig',
-    
 ]
 
 MIDDLEWARE = [
@@ -99,11 +95,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
 
-# MEDIA_URL = '/templates/img/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, '')
-# upload_to='shop/templates/img'
-
-
 REGISTER_REDIRECT_URL = 'my_profile'
 LOGIN_REDIRECT_URL = 'my_profile'
 LOGIN_URL = 'login'
@@ -119,13 +110,4 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
 ]
-
-# social auth settings
-SOCIAL_AUTH_FACEBOOK_KEY = '' # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '' # Facebook App Secret
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_TWITTER_KEY = '' # Twitter Consumer Key
-SOCIAL_AUTH_TWITTER_SECRET = '' # Twitter Consumer Secret
-
-
 

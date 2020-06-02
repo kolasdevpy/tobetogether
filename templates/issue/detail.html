@@ -9,21 +9,14 @@
     <p>{{issue.issue_description}}</p>
   </div>
 <em>{{issue.pub_date}}</em>
-
-
 <hr>
 
 <form action="{% url 'leave_comment' issue.id %}" method="POST", enctype="multipart/form-data">
-
     {% csrf_token %}
     {{ form.as_p }}
-
     <input class="file_load" type="file" name="image" value="Load image" placeholder="Load image">
     <input type="submit" value="Save"  name="_save">
-
 </form>
-
-
 <hr>
 
 {% if latest_comments %}
@@ -39,11 +32,8 @@
         {% endif %}
         <hr>
     {% endfor %}
-
 {% else %}
 Write your first comment, please.
 {% endif %}
-
-
 
 {% endblock %}

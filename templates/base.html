@@ -9,22 +9,22 @@
 </head>
 <body>
   <div id="header">
-      <span class="logo">
-        <img src="{% static '/img/logo_tbt.png' %}" width="50" height="50">
-        <a href="{% url 'ToBeTogether' %}">ToBeTogether</a>
-      </span>
+    <span class="logo">
+      <img src="{% static '/img/logo_tbt.png' %}" width="50" height="50">
+      <a href="{% url 'ToBeTogether' %}">ToBeTogether</a>
+    </span>
       {% if request.user.is_authenticated %}
         <ul class="menu">
-          <li {% if section == 'my_issues' %}class="selected"{% endif %}>
+          <li {% if section == "my_issues" %}class="selected"{% endif %}>
             <a href="{% url 'my_issues' %}">My issues</a>
           </li>
-          <li {% if section == 'new_issues' %}class="selected"{% endif %}>
+          <li {% if section == "new_issues" %}class="selected"{% endif %}>
             <a href="{% url 'new_issues' %}">New issues</a>
           </li>
           <li {% if section == "my_profile" %}class="selected"{% endif %}>
             <a href="{% url 'my_profile' %}">My profile</a>
           </li>
-          <li {% if section == 'settings' %}class="selected"{% endif %}>
+          <li {% if section == "settings" %}class="selected"{% endif %}>
             <a href="{% url 'settings' %}">Settings</a>
           </li>
         </ul>
@@ -39,9 +39,7 @@
   </div>
   <div id="content">
     {% block content %}
-    <div>
-    <img src="{% static '/img/logo_tbt.png' %}">
-    </div>
+
     {% endblock %}
   </div>
 </body>

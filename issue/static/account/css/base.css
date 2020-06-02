@@ -5,11 +5,8 @@
 body {
     margin:0;
     padding:0;
-    font-family:Arial, sans-serif;
     color:#979797;
     font-size:20px;
-    
-
 }
 
 a {
@@ -27,7 +24,6 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5 , h6 {
-    font-family: 'Arial', sans-serif;
     font-weight: bold;
     font-size:40px;
     display: flex;
@@ -58,9 +54,7 @@ h2 {
 
 
 #header .logo {
-    font-family: 'Arial', sans-serif;
     float:left;
-    color:#ffffff;
     font-size:25px;
     overflow:auto;
     display: flex;
@@ -84,18 +78,18 @@ h2 {
 }
 
 #header a:hover {
-    color:#fdc7f9;
+    color:#ffcdcd;
     font-weight: normal;
     transition-property: all;
     transition-duration: .4s;
 }
 
-/* #header .selected {
-    color:#faabf5;
+#header .selected a {
+    color:#ffcdcd;
     font-weight: bold;
-    transition-property: all;
+    transition-property: none;
     transition-duration: .4s;
-} */
+}
 
 #header .user {
     float:right;

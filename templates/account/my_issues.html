@@ -3,23 +3,20 @@
 {% block title %}TBT - My issues{% endblock %}
 
 {% block content %}
-  <h1>My issues</h1>
 
+  <h1>My issues</h1>
   <p id="create_issue"><a href="{% url 'create_issue' %}">Create an issue</a></p>
   <p class="join_to_issue">My issues:</p>
 
-    {% if latest_issues_list %}
-
-      {% for a in latest_issues_list %}
-        <div class="list_issues">
-            <a href="{% url 'detail' a.id %}">{{a.issue_title}}</a>
-        </div>
-      {% endfor %}
-
-    {% else %}
-      <div class="issues_not_found">
-        Issues not found
+  {% if latest_issues_list %}
+    {% for a in latest_issues_list %}
+      <div class="list_issues">
+          <a href="{% url 'detail' a.id %}">{{a.issue_title}}</a>
       </div>
-    {% endif %}
-
+    {% endfor %}
+  {% else %}
+    <div class="issues_not_found">
+      Issues not found
+    </div>
+  {% endif %}
 {% endblock %}

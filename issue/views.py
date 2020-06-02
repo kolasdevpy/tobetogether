@@ -1,3 +1,4 @@
+from django.views.decorators.http import require_GET
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -5,9 +6,7 @@ from django.urls import reverse
 from .models import Issue, Comment
 from .forms import IssueForm, CommentForm
 from django.conf import settings
-import random
 from django.db.models import Q
-from django.views.decorators.http import require_GET
 
 
 
@@ -58,8 +57,12 @@ def leave_comment(request, id):
     form = CommentForm(request.POST)
     if form.is_valid():
         comment_text = form.cleaned_data['comment_text']
-        request_issue.comment_set.create(author_name=request.user.username, comment_text=comment_text, image=request.FILES.get('image'))
-        # if request_issue.issue_private == False:
+        request_issue.comment_set.create(
+            author_name=request.user.username,
+            comment_text=comment_text,
+            image=request.FILES.get('image')
+            )
+        # if not request_issue.issue_private:
         request_issue.issue_private = True
             # new_id = random.randint(1, 1e9)
             # request_issue.id = new_id
@@ -99,6 +102,3 @@ def create_issue(request):
 
 # delete
 
-
-# def all_issues(request):
-#     return

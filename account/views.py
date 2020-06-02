@@ -32,46 +32,6 @@ def user_login(request):
     return render(request, 'account/login.html', {'form': form})
 
 
-def start(request):
-    return render(request,
-                  'account/start.html',
-                  {'section': 'start'})
-
-
-def ToBeTogether(request):
-    return render(request,
-                  'account/ToBeTogether.html',
-                  {'section': 'ToBeTogether'})
-
-
-@login_required
-def my_profile(request):
-    return render(request,
-                  'account/my_profile.html',
-                  {'section': 'my_profile'})
-
-
-@login_required
-def my_issues(request):
-    comments = Comment.objects.filter(author_name=request.user.username).distinct('issue')
-    latest_issues_list = Issue.objects.filter(Q(issue=request.user) | Q(pk__in=[i.issue.pk for i in comments])).order_by('-pub_date')[:]
-    return render(request, 'account/my_issues.html', {'latest_issues_list': latest_issues_list})
-
-
-@login_required
-def new_issues(request):
-    return render(request,
-                  'account/new_issues.html',
-                  {'section': 'new_issues'})
-
-
-@login_required
-def settings(request):
-    return render(request,
-                  'account/settings.html',
-                  {'section': 'settings'})
-
-
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
@@ -112,3 +72,46 @@ def edit(request):
                   'account/edit.html',
                   {'user_form': user_form,
                    'profile_form': profile_form})
+
+
+def start(request):
+    return render(request,
+                  'account/start.html',
+                  {'section': 'start'})
+
+
+def ToBeTogether(request):
+    return render(request,
+                  'account/ToBeTogether.html',
+                  {'section': 'ToBeTogether'})
+
+
+@login_required
+def my_profile(request):
+    return render(request,
+                  'account/my_profile.html',
+                  {'section': 'my_profile'})
+
+
+@login_required
+def my_issues(request):
+    comments = Comment.objects.filter(author_name=request.user.username).distinct('issue')
+    latest_issues_list = Issue.objects.filter(
+        Q(issue=request.user) | Q(pk__in=[i.issue.pk for i in comments])
+        ).order_by('-pub_date')[:]
+    return render(request, 'account/my_issues.html', {'latest_issues_list': latest_issues_list})
+
+
+@login_required
+def new_issues(request):
+    return render(request,
+                  'account/new_issues.html',
+                  {'section': 'new_issues'})
+
+
+@login_required
+def settings(request):
+    return render(request,
+                  'account/settings.html',
+                  {'section': 'settings'})
+

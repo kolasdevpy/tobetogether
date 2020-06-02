@@ -12,5 +12,5 @@ urlpatterns = [
     path('<int:id>/leave_comment/', views.leave_comment, name = 'leave_comment'),
     path('new_issues/', views.index, name = 'new_issues'),
     path('new_issues/search/', views.search, name='search'),
-]
+    ]
 

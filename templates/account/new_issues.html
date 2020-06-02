@@ -12,19 +12,16 @@
     <input type="search" name="q" placeholder="Search">
   </form>
 
-
   {% if latest_issues_list %}
     {% for a in latest_issues_list %}
       <div class="list_issues">
         <a href="{% url 'detail' a.id %}">{{a.issue_title}}</a>
       </div>
     {% endfor %}
-
-    {% else %}
-      <div class="issues_not_found">
-        Issues not found
-      </div>
-    {% endif %}
-
+  {% else %}
+    <div class="issues_not_found">
+      Issues not found
+    </div>
+  {% endif %}
 
 {% endblock %}
