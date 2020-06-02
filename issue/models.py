@@ -8,7 +8,7 @@ from django.conf import settings
 
 class Issue(models.Model):
     issue = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-    issue_title = models.CharField('Issue', max_length=100)
+    issue_title = models.CharField('Issue', max_length=50)
     issue_description = models.TextField('Description')
     pub_date = models.DateTimeField(default=timezone.now)
     issue_private = models.BooleanField(default=False)
@@ -34,7 +34,7 @@ class Issue(models.Model):
 class Comment(models.Model):
     issue = models.ForeignKey(Issue, on_delete = models.CASCADE)
     author_name = models.CharField('author name', max_length=50)
-    comment_text = models.TextField('comment')
+    comment_text = models.TextField('comment', max_length=500)
     image = models.ImageField(upload_to='media/img', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

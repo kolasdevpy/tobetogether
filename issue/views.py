@@ -6,8 +6,6 @@ from .models import Issue, Comment
 from .forms import IssueForm, CommentForm
 from django.conf import settings
 import random
-import hashlib  #
-
 from django.db.models import Q
 from django.views.decorators.http import require_GET
 
@@ -29,32 +27,46 @@ def index(request):
 
 
 def detail(request, id):
-    # if id == author, commentator --------------------------------------------
     try:
-        a = Issue.objects.get(pk=id)
+        request_issue = Issue.objects.get(pk=id)
+        if request_issue:
+            try:
+                commentator_name = request_issue.comment_set.first().author_name
+            except AttributeError:
+                latest_comments = request_issue.comment_set.order_by('-id')[:]
+                return render(request, 'issue/detail.html', {
+                    'issue': request_issue, 'form': CommentForm(), 'latest_comments': latest_comments
+                    })
+            if request.user.id == request_issue.issue_id or request.user.username == commentator_name:
+                latest_comments = request_issue.comment_set.order_by('-id')[:]
+                return render(request, 'issue/detail.html', {
+                    'issue': request_issue, 'form': CommentForm(), 'latest_comments': latest_comments
+                    })
+            else:
+                raise Http404('Issue not found.')
+        else:
+            raise Http404('Issue not found.')
     except:
         raise Http404('Issue not found.')
-    latest_comments = a.comment_set.order_by('-id')[:]
-    return render(request, 'issue/detail.html', {'issue': a, 'form': CommentForm(), 'latest_comments': latest_comments})
 
 
 def leave_comment(request, id):
     try:
-        a = Issue.objects.get(pk=id)
+        request_issue = Issue.objects.get(pk=id)
     except:
         raise Http404('Issue not found.')
     form = CommentForm(request.POST)
     if form.is_valid():
         comment_text = form.cleaned_data['comment_text']
-        a.comment_set.create(author_name=request.user.username, comment_text=comment_text, image=request.FILES.get('image'))
-        a.issue_private = True
-        # issue_new_id = Issue.objects.get(pk=id)
-        # print(issue_new_id.pk)
-        # new_id = random.randint(1, 1e6)
-        # print(new_id)
-        # a.pk = new_id
-        a.save()
-    return HttpResponseRedirect(reverse('detail', args=[a.id]))
+        request_issue.comment_set.create(author_name=request.user.username, comment_text=comment_text, image=request.FILES.get('image'))
+        # if request_issue.issue_private == False:
+        request_issue.issue_private = True
+            # new_id = random.randint(1, 1e9)
+            # request_issue.id = new_id
+            # request_issue.comment_set.id = new_id
+            # request_issue.save()
+        request_issue.save()
+    return HttpResponseRedirect(reverse('detail', args=[request_issue.id]))
 
 
 @login_required
@@ -75,12 +87,9 @@ def create_issue(request):
 
 
 # Issue.object.filter(issue_title__startswith = "qwerty")
-
-
 # import timezone
 # for_the_last = timezone.now().month  # month
 # Issue.object.filter(pub_date = for_the_last)
-
 
 # Issue.object.get(id = 1)     # issue_title =
 

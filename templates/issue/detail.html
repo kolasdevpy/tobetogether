@@ -5,7 +5,9 @@
 {% block content %}
 
 <h2>{{issue.issue_title}}</h2>
-<p>{{issue.issue_description}}</p>
+<div id="description">
+    <p>{{issue.issue_description}}</p>
+  </div>
 <em>{{issue.pub_date}}</em>
 
 
@@ -15,6 +17,7 @@
 
     {% csrf_token %}
     {{ form.as_p }}
+
     <input class="file_load" type="file" name="image" value="Load image" placeholder="Load image">
     <input type="submit" value="Save"  name="_save">
 

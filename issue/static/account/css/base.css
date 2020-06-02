@@ -90,8 +90,8 @@ h2 {
     transition-duration: .4s;
 }
 
-/* #header ul.menu li.selected a:hover {
-    color:#fdc7f9;
+/* #header .selected {
+    color:#faabf5;
     font-weight: bold;
     transition-property: all;
     transition-duration: .4s;
@@ -133,6 +133,16 @@ h2 {
 form.search {
     width: 100%;
     padding:1px 150px 1px;
+}
+
+.issues_not_found {
+    margin: 0 150px;
+}
+
+#description {
+    font-size:30px;
+    font-style: italic;
+    color:#636060;
 }
 
 /* forms */
@@ -205,5 +215,7 @@ input[type=submit], a.button {
 }
 .social li.facebook { background:#3b5399; }
 .social li.twitter { background:#00cffa; }
+
+
 
 
