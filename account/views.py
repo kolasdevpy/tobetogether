@@ -87,13 +87,6 @@ def ToBeTogether(request):
 
 
 @login_required
-def my_profile(request):
-    return render(request,
-                  'account/my_profile.html',
-                  {'section': 'my_profile'})
-
-
-@login_required
 def my_issues(request):
     comments = Comment.objects.filter(author_name=request.user.username).distinct('issue')
     latest_issues_list = Issue.objects.filter(
@@ -107,6 +100,13 @@ def new_issues(request):
     return render(request,
                   'account/new_issues.html',
                   {'section': 'new_issues'})
+
+
+@login_required
+def my_profile(request):
+    return render(request,
+                  'account/my_profile.html',
+                  {'section': 'my_profile'})
 
 
 @login_required

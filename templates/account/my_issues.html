@@ -9,9 +9,9 @@
   <p class="join_to_issue">My issues:</p>
 
   {% if latest_issues_list %}
-    {% for a in latest_issues_list %}
+    {% for el in latest_issues_list %}
       <div class="list_issues">
-          <a href="{% url 'detail' a.id %}">{{a.issue_title}}</a>
+        <a href="{% url 'detail' el.id %}">{{ el.issue_title }}</a>
       </div>
     {% endfor %}
   {% else %}

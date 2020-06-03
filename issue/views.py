@@ -46,7 +46,7 @@ def detail(request, id):
         else:
             raise Http404('Issue not found.')
     except:
-        raise Http404('Issue not found.')
+        raise Http404('Issue not found.      +++++++++++  АЙ-АЙ-АЙ!!!   ОЧЕНЬ НЕКРАСИВО ПОДСМАТРИВАТЬ!!!  +++++++++++')
 
 
 def leave_comment(request, id):
@@ -62,12 +62,7 @@ def leave_comment(request, id):
             comment_text=comment_text,
             image=request.FILES.get('image')
             )
-        # if not request_issue.issue_private:
         request_issue.issue_private = True
-            # new_id = random.randint(1, 1e9)
-            # request_issue.id = new_id
-            # request_issue.comment_set.id = new_id
-            # request_issue.save()
         request_issue.save()
     return HttpResponseRedirect(reverse('detail', args=[request_issue.id]))
 
@@ -86,19 +81,4 @@ def create_issue(request):
                                     request.user)
             return redirect('/my_issues/')
         return render(request, 'create_issue.html', context={'form': form}) 
-
-
-
-# Issue.object.filter(issue_title__startswith = "qwerty")
-# import timezone
-# for_the_last = timezone.now().month  # month
-# Issue.object.filter(pub_date = for_the_last)
-
-# Issue.object.get(id = 1)     # issue_title =
-
-# issue.comment_set_all()      # show all comments
-# issue.comment_set.count()    # quantity
-# issue.comment_set.filter(author_name__startswith = "~name~")
-
-# delete
 
